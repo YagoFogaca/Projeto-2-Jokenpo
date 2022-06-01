@@ -2,30 +2,119 @@ const prompt = require('prompt-sync')();
 console.clear();
 //
 const opcao = ['pedra', 'papel', 'tesoura'];
-let opcaoPartida;
-console.log(`Escolha somente o número ou um número de 1 a 3!`);
-let opcaoUsuario = +prompt('Você escolhe qual? 1- pedra 2- papel 3- tesoura ');
-while (
-    isNaN(opcaoUsuario) == true ||
-    (opcaoUsuario != 1 && opcaoUsuario != 2 && opcaoUsuario != 3)
-) {
-    console.log('Escolha somente o número ou um número de 1 a 3!');
-    opcaoUsuario = +prompt(`1- pedra 2- papel 3- tesoura `);
+let opcaoComputadorPartida = opcao[Math.floor(Math.random() * opcao.length)];
+let opcaoUsuarioPartida;
+let pontosUsuario = 0;
+let pontosComputador = 0;
+let empates = 0;
+programa: while (true) {
+    let rodadas = +prompt('Quantas rodadas deseja jogar? ');
+    console.log();
+    while (isNaN(rodadas) == true) {
+        rodadas = +prompt('Quantas rodadas deseja jogar? ');
+    }
+    console.log();
+    for (let i = 0; i < rodadas; i++) {
+        console.log(`Escolha somente um número de 1 a 3!`);
+        let opcaoUsuario = +prompt(
+            'Você escolhe qual? 1- pedra 2- papel 3- tesoura ',
+        );
+        while (
+            isNaN(opcaoUsuario) == true ||
+            (opcaoUsuario != 1 && opcaoUsuario != 2 && opcaoUsuario != 3)
+        ) {
+            console.log('Escolha somente um número de 1 a 3!');
+            opcaoUsuario = +prompt(`1- pedra 2- papel 3- tesoura `);
+        }
+        if (opcaoUsuario === 1) {
+            opcaoUsuarioPartida = opcao[0];
+        } else if (opcaoUsuario === 2) {
+            opcaoUsuarioPartida = opcao[1];
+        } else {
+            opcaoUsuarioPartida = opcao[2];
+        }
+        if (opcaoUsuarioPartida == 'papel') {
+            switch (opcaoComputadorPartida) {
+                case 'papel':
+                    console.log(`Deu empate!`);
+                    empates++;
+                    break;
+                case 'pedra':
+                    console.log(`Papel ganha de pedra. Você ganhou!`);
+                    pontosUsuario++;
+                    break;
+                case 'tesoura':
+                    console.log(`Papel perde para tesoura. Você perdeu!`);
+                    pontosComputador++;
+                    break;
+            }
+        } else if (opcaoUsuarioPartida == 'pedra') {
+            switch (opcaoComputadorPartida) {
+                case 'pedra':
+                    console.log(`Deu empate!`);
+                    empates++;
+                    break;
+                case 'tesoura':
+                    console.log(`Pedra ganha de tesoura. Você ganhou!`);
+                    pontosUsuario++;
+                    break;
+                case 'papel':
+                    console.log(`Pedra perde para papel. Você perdeu!`);
+                    pontosComputador++;
+                    break;
+            }
+        } else if (opcaoUsuarioPartida == 'tesoura') {
+            switch (opcaoComputadorPartida) {
+                case 'tesoura':
+                    console.log(`Deu empate!`);
+                    empates++;
+                    break;
+                case 'papel':
+                    console.log(`Tesoura ganha de papel. Você ganhou!`);
+                    pontosUsuario++;
+                    break;
+                case 'pedra':
+                    console.log(`Tesoura perde para pedra. Você perdeu!`);
+                    pontosComputador++;
+                    break;
+            }
+        }
+    }
+
+    if (pontosUsuario > pontosComputador) {
+        console.log();
+        console.log(`O placar ficou: 
+        Usuario: ${pontosUsuario}
+        Computador: ${pontosComputador}
+        Empates: ${empates}
+        O usuario foi o grande campeão!`);
+    } else if (pontosUsuario < pontosComputador) {
+        console.log();
+        console.log(`O placar ficou: 
+        Usuario: ${pontosUsuario}
+        Computador: ${pontosComputador}
+        Empates: ${empates}
+        O computador foi o grande campeão!`);
+    } else {
+        console.log();
+        console.log(`O placar ficou: 
+        Usuario: ${pontosUsuario}
+        Computador: ${pontosComputador}
+        Empates: ${empates}
+        Que loucura, deu empate!`);
+    }
+    let jogarDeNovo = prompt('Deseja jogar novamente? ');
+    while (jogarDeNovo != 'sim' && jogarDeNovo != 'nao') {
+        jogarDeNovo = prompt('Deseja jogar novamente? ');
+    }
+    if (jogarDeNovo == 'sim') {
+        console.log();
+        console.log('Boa escolha!');
+        continue programa;
+    } else {
+        console.log();
+        console.log('Que pena. Até uma proxima!');
+        console.log();
+        break programa;
+    }
 }
-if (opcaoUsuario === 1) {
-    opcaoPartida = opcao[0];
-} else if (opcaoUsuario === 2) {
-    opcaoPartida = opcao[1];
-} else {
-    opcaoPartida = opcao[2];
-}
-const computador = Math.floor(Math.random() * opcao.length);
-console.log(`O usuario escolheu: ${opcaoPartida}
-O computador escolheu: ${opcao[computador]}`);
-// colocar um peso para pedra, papel e tesoura;
-// pedra: 0;
-// papel: 1;
-// tesoura: 2;
-// Pedra ganha da tesoura, mas perde para o papel; pedra > tesoura
-// Tesoura ganha do papel, mas perde para a pedra; tesoura > papel
-// Papel ganha da pedra, mas perde para a tesoura. papel > pedra
