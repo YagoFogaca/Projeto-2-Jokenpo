@@ -1,13 +1,15 @@
 const prompt = require('prompt-sync')();
 console.clear();
 //
-const opcao = ['pedra', 'papel', 'tesoura'];
-let opcaoComputadorPartida = opcao[Math.floor(Math.random() * opcao.length)];
-let opcaoUsuarioPartida;
-let pontosUsuario = 0;
-let pontosComputador = 0;
-let empates = 0;
+
 programa: while (true) {
+    const opcao = ['pedra', 'papel', 'tesoura'];
+    let opcaoComputadorPartida =
+        opcao[Math.floor(Math.random() * opcao.length)];
+    let opcaoUsuarioPartida;
+    let pontosUsuario = 0;
+    let pontosComputador = 0;
+    let empates = 0;
     let rodadas = +prompt('Quantas rodadas deseja jogar? ');
     console.log();
     while (isNaN(rodadas) == true) {
@@ -80,28 +82,27 @@ programa: while (true) {
             }
         }
     }
-
     if (pontosUsuario > pontosComputador) {
         console.log();
         console.log(`O placar ficou: 
-        Usuario: ${pontosUsuario}
-        Computador: ${pontosComputador}
-        Empates: ${empates}
-        O usuario foi o grande campeão!`);
+                Usuario: ${pontosUsuario}
+                Computador: ${pontosComputador}
+                Empates: ${empates}
+                O usuario foi o grande campeão!`);
     } else if (pontosUsuario < pontosComputador) {
         console.log();
         console.log(`O placar ficou: 
-        Usuario: ${pontosUsuario}
-        Computador: ${pontosComputador}
-        Empates: ${empates}
-        O computador foi o grande campeão!`);
+                Usuario: ${pontosUsuario}
+                Computador: ${pontosComputador}
+                Empates: ${empates}
+                O computador foi o grande campeão!`);
     } else {
         console.log();
         console.log(`O placar ficou: 
-        Usuario: ${pontosUsuario}
-        Computador: ${pontosComputador}
-        Empates: ${empates}
-        Que loucura, deu empate!`);
+                Usuario: ${pontosUsuario}
+                Computador: ${pontosComputador}
+                Empates: ${empates}
+                Que loucura, deu empate!`);
     }
     let jogarDeNovo = prompt('Deseja jogar novamente? ');
     while (jogarDeNovo != 'sim' && jogarDeNovo != 'nao') {
@@ -109,6 +110,7 @@ programa: while (true) {
     }
     if (jogarDeNovo == 'sim') {
         console.log();
+        console.clear();
         console.log('Boa escolha!');
         continue programa;
     } else {
