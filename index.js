@@ -103,6 +103,13 @@ programa: while (true) {
                 Computador: ${pontosComputador}
                 Empates: ${empates}
                 O computador foi o grande campeão!`);
+    } else {
+        console.log();
+        console.log(`O placar final depois de ${rodadas} rodadas:
+                Usuario: ${pontosUsuario}
+                Computador: ${pontosComputador}
+                Empates: ${empates}
+                E deu empate geral!`);
     }
     let jogarDeNovo = prompt('Deseja jogar novamente? ');
     while (jogarDeNovo != 'sim' && jogarDeNovo != 'nao') {
