@@ -42,7 +42,7 @@ programa: while (true) {
                     empates++;
                     break;
                 case 'pedra':
-                    console.log(`Usuario ganhou!`);
+                    console.log(`Usuário ganhou!`);
                     pontosUsuario++;
                     break;
                 case 'tesoura':
@@ -57,7 +57,7 @@ programa: while (true) {
                     empates++;
                     break;
                 case 'tesoura':
-                    console.log(`Usuario ganhou!`);
+                    console.log(`Usuário ganhou!`);
                     pontosUsuario++;
                     break;
                 case 'papel':
@@ -72,7 +72,7 @@ programa: while (true) {
                     empates++;
                     break;
                 case 'papel':
-                    console.log(`Usuario ganhou!`);
+                    console.log(`Usuário ganhou!`);
                     pontosUsuario++;
                     break;
                 case 'pedra':
@@ -85,21 +85,21 @@ programa: while (true) {
     if (empates > (pontosComputador || pontosUsuario)) {
         console.log();
         console.log(`O placar final depois de ${rodadas} rodadas:
-                Usuario: ${pontosUsuario}
+                Usuário: ${pontosUsuario}
                 Computador: ${pontosComputador}
                 Empates: ${empates}
                 Que loucura, deu empate!`);
     } else if (pontosUsuario > pontosComputador) {
         console.log();
         console.log(`O placar final depois de ${rodadas} rodadas:
-                Usuario: ${pontosUsuario}
+                Usuário: ${pontosUsuario}
                 Computador: ${pontosComputador}
                 Empates: ${empates}
-                O usuario foi o grande campeão!`);
+                O usuário foi o grande campeão!`);
     } else if (pontosUsuario < pontosComputador) {
         console.log();
         console.log(`O placar final depois de ${rodadas} rodadas:
-                Usuario: ${pontosUsuario}
+                Usuário: ${pontosUsuario}
                 Computador: ${pontosComputador}
                 Empates: ${empates}
                 O computador foi o grande campeão!`);
